@@ -1,0 +1,61 @@
+# init docstring
+>>> game_size = 3
+        >>> new_game = StonehengeState(is_p1_turn, game_size,)
+        >>> print(new_game.h_rows)
+        [['A', 'B'], ['C', 'D', 'E'], ['F', 'G', 'H', 'I'], ['J', 'K', 'L']]
+        >>> print(new_game.vl_rows)
+        [['A', 'C', 'F'], ['B', 'D', 'G', 'J'], ['E', 'H', 'K'], ['I', 'L']]
+        >>> print(new_game.vr_rows)
+        [['J', 'F'], ['K', 'G', 'C'], ['L', 'H', 'D', 'A'], ['I', 'E', 'B']]
+
+
+
+# str docstring
+>>> game_size = 1
+        >>> new_game = StonehengeState(is_p1_turn, game_size)
+        >>> print(new_game)
+
+        >>> game_size = 3
+        >>> size_three = StonehengeState(is_p1_turn, game_size)
+        >>> print(size_three)
+        >>> game_size = 4
+        >>> nextone = StonehengeState(is_p1_turn, game_size)
+        >>> print(nextone)
+        >>> game_size = 5
+        >>> lastone = StonehengeState(is_p1_turn, game_size)
+        >>> print(lastone)
+
+
+# make_move code body
+
+
+
+minimax
+
+moves = game2.current_state.get_possible_moves()
+    scores = []
+    for move in moves:
+        new_state_final_score = final_state(game2, first_state, move)
+        scores.append(new_state_final_score)
+    max_score = max(scores)
+    moves_index = scores.index(max_score)
+    return game.str_to_move(game.current_state.get_possible_moves()[moves_index])
+
+
+
+new_state = current_state.make_move(move)
+    new_moves = new_state.get_possible_moves()
+
+    if game.is_over(new_state):
+        if game.is_winner(new_state.get_current_player_name()):
+            return -1
+        elif not game.is_winner(new_state.get_current_player_name()):
+            return 1
+        else:
+            return 0
+    else:
+        return max([final_state(game, new_state, x) for x in new_moves])
+
+
+
+
